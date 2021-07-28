@@ -15,3 +15,10 @@ ENV CHROME_BIN="/usr/bin/chromium-browser" \
 
 RUN apk add --update udev ttf-freefont chromium npm \
     && npm install -g mermaid-filter@1.4.5 --unsafe-perm=true
+
+# Chinese TeX packages
+
+RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
+    tlmgr update \
+    && tlmgr install xecjk ctex \
+    && apk add --update texlive texmf-dist-langchinese font-noto-cjk font-noto-cjk-extra
